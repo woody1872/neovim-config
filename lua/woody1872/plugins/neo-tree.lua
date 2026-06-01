@@ -24,3 +24,13 @@ require('neo-tree').setup {
     },
   },
 }
+
+-- This ensures the neo-tree gets closed when a file is opened from it - keeping it
+-- open is a stupid habit as it wastes screen space
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    local manager = require 'neo-tree.sources.manager'
+    local renderer = manager.get_state 'filesystem'
+    if renderer then vim.cmd 'Neotree close' end
+  end,
+})
