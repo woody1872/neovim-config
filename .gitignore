@@ -40,6 +40,8 @@ luac.out
 *.hex
 
 # Other
+*.log
+*.env
 tags
 test.sh
 .luarc.json
